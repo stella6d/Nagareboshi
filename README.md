@@ -46,7 +46,7 @@ https://stella6d.github.io/Nagareboshi/news/sample.html → https://stella6d.com
 - **GitHub Pages**: [stella6d.github.io/Nagareboshi](https://stella6d.github.io/Nagareboshi/)
 
 ### SNS
-<!-- アイコンのみバージョン
+<!-- アイコンのみバージョン 消さないで！！
 [![x](https://img.shields.io/badge/-x-000000?style=flat&logo=x&logoColor=white)](https://x.com/6d_nagareboshi)
 [![instagram](https://img.shields.io/badge/-instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/6d_nagareboshi/)
 -->
@@ -56,10 +56,3 @@ https://stella6d.github.io/Nagareboshi/news/sample.html → https://stella6d.com
 ---
 
 **商標について**: QR コードはデンソーウェーブの登録商標です。
-
-<!-- 
-開発者向けメモ:
-- このファイルは手動で細かく調整されています
-- AI編集ツール使用時は慎重に行ってください
-- 特にSNSバッジとリンクの形式は現在の状態を維持してください
--->
