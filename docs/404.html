@@ -46,7 +46,7 @@
     // メタタグでリダイレクト設定
     const metaRefresh = document.createElement('meta');
     metaRefresh.setAttribute('http-equiv', 'refresh');
-    metaRefresh.setAttribute('content', '3; url=' + targetUrl);
+    metaRefresh.setAttribute('content', '0; url=' + targetUrl);
     document.head.appendChild(metaRefresh);
     
     // canonical URLを設定
@@ -56,9 +56,7 @@
     document.head.appendChild(linkCanonical);
     
     // 即座にリダイレクト
-    setTimeout(() => {
-      window.location.replace(targetUrl);
-    }, 3000);
+    window.location.replace(targetUrl);
   </script>
 </body>
 </html>
