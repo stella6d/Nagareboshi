@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# このサイトは一時的なリダイレクト用です
+# メインサイト: https://www.stella6d.com/
