@@ -1,5 +1,14 @@
 # Nagareboshi - 『6D流れ星』の広報用 GitHub Pages
 
+<!-- 
+AI編集時の注意事項:
+- このREADMEファイルは手動で調整済みです
+- SNSバッジのスタイルやレイアウトを変更する前に必ず確認してください
+- コメントアウトされたアイコンのみバージョンは保持してください
+- 商標表記（QRコード、デンソーウェーブ）は必須です
+- URLの形式（wwwあり/なし）は統一されています
+-->
+
 ## 概要
 
 このリポジトリは、GitHub Pages から独自ドメイン `stella6d.com`（[リンクはこちら](https://stella6d.com)）への自動リダイレクトサイトです。  
@@ -32,9 +41,25 @@ https://stella6d.github.io/Nagareboshi/news/sample.html → https://stella6d.com
 
 ## リンク
 
+### ウェブサイト
 - **独自ドメイン**: [stella6d.com](https://stella6d.com/)  
 - **GitHub Pages**: [stella6d.github.io/Nagareboshi](https://stella6d.github.io/Nagareboshi/)
+
+### SNS
+<!-- アイコンのみバージョン
+[![x](https://img.shields.io/badge/-x-000000?style=flat&logo=x&logoColor=white)](https://x.com/6d_nagareboshi)
+[![instagram](https://img.shields.io/badge/-instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/6d_nagareboshi/)
+-->
+[![x](https://img.shields.io/badge/-x-000000?style=flat&logo=x&logoColor=white)](https://x.com/6d_nagareboshi) [@6d_nagareboshi](https://x.com/6d_nagareboshi)  
+[![instagram](https://img.shields.io/badge/-instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/6d_nagareboshi/) [@6d_nagareboshi](https://www.instagram.com/6d_nagareboshi/)
 
 ---
 
 **商標について**: QR コードはデンソーウェーブの登録商標です。
+
+<!-- 
+開発者向けメモ:
+- このファイルは手動で細かく調整されています
+- AI編集ツール使用時は慎重に行ってください
+- 特にSNSバッジとリンクの形式は現在の状態を維持してください
+-->
