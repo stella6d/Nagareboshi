@@ -59,14 +59,39 @@
     // モバイル対応の強化されたリダイレクト
     function performRedirect() {
       const currentPath = window.location.pathname;
-      const cleanPath = currentPath.replace(/\.html$/, '');
+      const fullUrl = window.location.href;
+      
+      // GitHub Pagesのリポジトリ名を除去
+      let cleanPath = currentPath;
+      if (cleanPath.startsWith('/Nagareboshi/')) {
+        cleanPath = cleanPath.replace('/Nagareboshi/', '/');
+      } else if (cleanPath.startsWith('/nagareboshi/')) {
+        cleanPath = cleanPath.replace('/nagareboshi/', '/');
+      }
+      
+      // .html拡張子を除去
+      cleanPath = cleanPath.replace(/\.html$/, '');
+      
+      // ルートパスの場合は空文字に
+      if (cleanPath === '/') {
+        cleanPath = '';
+      }
+      
       const targetUrl = 'https://stella6d.com' + cleanPath;
+      
+      // デバッグ情報をコンソールに出力
+      console.log('Current URL:', fullUrl);
+      console.log('Current Path:', currentPath);
+      console.log('Clean Path:', cleanPath);
+      console.log('Target URL:', targetUrl);
       
       // HTML要素を更新
       const urlElement = document.getElementById('redirect-url');
       const linkElement = document.getElementById('redirect-link');
       
-      if (urlElement) urlElement.textContent = targetUrl;
+      if (urlElement) {
+        urlElement.innerHTML = '<a href="' + targetUrl + '">' + targetUrl + '</a>';
+      }
       if (linkElement) linkElement.href = targetUrl;
       
       // canonical URLを設定
