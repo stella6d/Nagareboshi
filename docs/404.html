@@ -48,10 +48,10 @@
 </head>
 <body>
   <div class="box">
-    <div class="not-found">404 - ページが見つかりません</div>
+    <!-- <div class="not-found">404 - ページが見つかりません</div> -->
     <h1>ページ移動中...</h1>
     <p>お探しのページはこちらのサイトで公開中です <span id="redirect-url"></span> をご確認ください。</p>
-    <p><span id="countdown" class="countdown">3</span>秒後に自動的にリダイレクトされます。</p>
+    <p><span id="countdown" class="countdown">1.5</span>秒後に自動的にリダイレクトされます。</p>
     <a id="redirect-link" href="#" class="redirect-btn">今すぐ移動する</a>
   </div>
   
@@ -101,12 +101,14 @@
       document.head.appendChild(linkCanonical);
       
       // カウントダウン
-      let count = 3;
+      let count = 1.5;
       const countdownElement = document.getElementById('countdown');
       
       const countdown = setInterval(() => {
-        count--;
-        if (countdownElement) countdownElement.textContent = count;
+        count -= 0.1;
+        if (countdownElement) {
+          countdownElement.textContent = Math.max(0, count).toFixed(1);
+        }
         
         if (count <= 0) {
           clearInterval(countdown);
@@ -122,12 +124,12 @@
             }
           }
         }
-      }, 1000);
+      }, 100);
       
-      // メタリフレッシュも併用
+      // メタリフレッシュも併用（フォールバック用に2秒に設定）
       const metaRefresh = document.createElement('meta');
       metaRefresh.setAttribute('http-equiv', 'refresh');
-      metaRefresh.setAttribute('content', '5; url=' + targetUrl);
+      metaRefresh.setAttribute('content', '2; url=' + targetUrl);
       document.head.appendChild(metaRefresh);
     }
     
