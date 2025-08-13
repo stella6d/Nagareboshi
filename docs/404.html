@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ページが見つかりません - Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      padding: 2rem;
+      color: #333;
+      text-align: center;
+    }
+    .box {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    a {
+      color: #1e88e5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .not-found {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .redirect-btn {
+      display: inline-block;
+      background: #1e88e5;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 15px;
+    }
+    .countdown {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e88e5;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="not-found">404 - ページが見つかりません</div>
+    <h1>ページ移動中...</h1>
+    <p>お探しのページはこちらのサイトで公開中です <span id="redirect-url"></span> をご確認ください。</p>
+    <p><span id="countdown" class="countdown">3</span>秒後に自動的にリダイレクトされます。</p>
+    <a id="redirect-link" href="#" class="redirect-btn">今すぐ移動する</a>
+  </div>
+  
+  <script>
+    // モバイル対応の強化されたリダイレクト
+    function performRedirect() {
+      const currentPath = window.location.pathname;
+      const cleanPath = currentPath.replace(/\.html$/, '');
+      const targetUrl = 'https://stella6d.com' + cleanPath;
+      
+      // HTML要素を更新
+      const urlElement = document.getElementById('redirect-url');
+      const linkElement = document.getElementById('redirect-link');
+      
+      if (urlElement) urlElement.textContent = targetUrl;
+      if (linkElement) linkElement.href = targetUrl;
+      
+      // canonical URLを設定
+      const linkCanonical = document.createElement('link');
+      linkCanonical.setAttribute('rel', 'canonical');
+      linkCanonical.setAttribute('href', targetUrl);
+      document.head.appendChild(linkCanonical);
+      
+      // カウントダウン
+      let count = 3;
+      const countdownElement = document.getElementById('countdown');
+      
+      const countdown = setInterval(() => {
+        count--;
+        if (countdownElement) countdownElement.textContent = count;
+        
+        if (count <= 0) {
+          clearInterval(countdown);
+          // 複数の方法でリダイレクトを試行
+          try {
+            window.location.href = targetUrl;
+          } catch (e) {
+            try {
+              window.location.replace(targetUrl);
+            } catch (e2) {
+              // フォールバック: ユーザーに手動クリックを促す
+              alert('自動リダイレクトできませんでした。「今すぐ移動する」ボタンをタップしてください。');
+            }
+          }
+        }
+      }, 1000);
+      
+      // メタリフレッシュも併用
+      const metaRefresh = document.createElement('meta');
+      metaRefresh.setAttribute('http-equiv', 'refresh');
+      metaRefresh.setAttribute('content', '5; url=' + targetUrl);
+      document.head.appendChild(metaRefresh);
+    }
+    
+    // DOMが完全に読み込まれてから実行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', performRedirect);
+    } else {
+      performRedirect();
+    }
+  </script>
+</body>
+</html>
