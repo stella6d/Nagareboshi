@@ -49,23 +49,6 @@ https://stella6d.github.io/Nagareboshi/about/fb-s → https://stella6d.com/about
 https://stella6d.github.io/Nagareboshi/contact/mail-n → https://stella6d.com/contact?utm_source=email&utm_medium=newsletter&utm_campaign=general
 ```
 
-#### 利用可能な短縮文字列
-| 短縮文字列 | 説明 | UTMパラメーター |
-|-----------|------|----------------|
-| `tw-s` | Twitter Social | twitter / social / general |
-| `fb-s` | Facebook Social | facebook / social / general |
-| `ig-s` | Instagram Social | instagram / social / general |
-| `line-s` | LINE Social | line / social / general |
-| `yt-s` | YouTube Social | youtube / social / general |
-| `mail-n` | Email Newsletter | email / newsletter / general |
-| `mail-p` | Email Promotional | email / promotional / general |
-| `search-g` | Google Search Ads | google / cpc / search |
-| `banner-w` | Website Banner | website / banner / general |
-| `blog-r` | Blog Referral | blog / referral / general |
-
-#### 設定の管理
-UTMパラメーターの設定は `docs/utm-config.json` で管理されています。新しい短縮文字列を追加する場合は、このファイルを編集してください。
-
 ## リンク
 
 ### ウェブサイト
