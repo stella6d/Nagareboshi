@@ -1,10 +1,11 @@
 {
   "utmMappings": {
     "qr-ps": "utm_source=qr&utm_medium=poster",
-    "qr-pam": "utm_source=qr&utm_medium=pamphlet"
-    "s-x": "utm_source=sns&utm_medium=X"
-    "s-ig": "utm_source=sns&utm_medium=instagram"
+    "qr-pam": "utm_source=qr&utm_medium=pamphlet",
+    "s-x": "utm_source=sns&utm_medium=X",
+    "s-ig": "utm_source=sns&utm_medium=instagram",
     "s-fb": "utm_source=sns&utm_medium=facebook"
   }
 }
+
 
