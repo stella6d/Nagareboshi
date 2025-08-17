@@ -47,32 +47,116 @@
   </div>
   
   <script>
-    // モバイル対応のリダイレクト
-    const targetUrl = 'https://stella6d.com/';
-    
-    // カウントダウン
-    let count = 2;
-    const countdownElement = document.getElementById('countdown');
-    
-    const countdown = setInterval(() => {
-      count--;
-      if (countdownElement) countdownElement.textContent = count;
+    // UTM設定を読み込む関数
+    async function loadUtmConfig() {
+      try {
+        const response = await fetch('/Nagareboshi/utm-config.json');
+        const config = await response.json();
+        return config.utmMappings;
+      } catch (error) {
+        console.log('UTM設定ファイルを読み込めませんでした:', error);
+        return {};
+      }
+    }
+
+    // UTM対応モバイルリダイレクト
+    async function performRedirect() {
+      const currentPath = window.location.pathname;
+      const fullUrl = window.location.href;
       
-      if (count <= 0) {
-        clearInterval(countdown);
-        // 複数の方法でリダイレクトを試行
-        try {
-          window.location.href = targetUrl;
-        } catch (e) {
-          try {
-            window.location.replace(targetUrl);
-          } catch (e2) {
-            // フォールバック
-            alert('自動リダイレクトできませんでした。「今すぐ移動する」ボタンをタップしてください。');
-          }
+      // UTM設定を読み込み
+      const utmMappings = await loadUtmConfig();
+      
+      // GitHub Pagesのリポジトリ名を除去
+      let cleanPath = currentPath;
+      if (cleanPath.startsWith('/Nagareboshi/')) {
+        cleanPath = cleanPath.replace('/Nagareboshi/', '/');
+      } else if (cleanPath.startsWith('/nagareboshi/')) {
+        cleanPath = cleanPath.replace('/nagareboshi/', '/');
+      }
+      
+      // .html拡張子を除去
+      cleanPath = cleanPath.replace(/\.html$/, '');
+      
+      // ルートパスの場合は空文字に
+      if (cleanPath === '/') {
+        cleanPath = '';
+      }
+      
+      // パスからUTM短縮文字列を抽出
+      let basePath = cleanPath;
+      let utmParams = '';
+      
+      const pathParts = cleanPath.split('/').filter(part => part !== '');
+      if (pathParts.length > 0) {
+        const lastPart = pathParts[pathParts.length - 1];
+        
+        // 最後の部分がUTM短縮文字列かチェック
+        if (utmMappings[lastPart]) {
+          utmParams = '?' + utmMappings[lastPart];
+          // UTM部分を除去したパスを作成
+          pathParts.pop();
+          basePath = pathParts.length > 0 ? '/' + pathParts.join('/') : '';
         }
       }
-    }, 1000);
+      
+      let targetUrl = 'https://stella6d.com' + basePath + utmParams;
+      
+      // デバッグ情報をコンソールに出力
+      console.log('Current URL:', fullUrl);
+      console.log('Current Path:', currentPath);
+      console.log('Clean Path:', cleanPath);
+      console.log('Base Path:', basePath);
+      console.log('UTM Params:', utmParams);
+      console.log('Target URL:', targetUrl);
+      
+      // HTML要素を更新
+      const linkElement = document.getElementById('redirect-link');
+      if (linkElement) linkElement.href = targetUrl;
+      
+      // canonical URLを設定
+      const linkCanonical = document.createElement('link');
+      linkCanonical.setAttribute('rel', 'canonical');
+      linkCanonical.setAttribute('href', targetUrl);
+      document.head.appendChild(linkCanonical);
+      
+      // メタリフレッシュを更新
+      const existingMetaRefresh = document.querySelector('meta[http-equiv="refresh"]');
+      if (existingMetaRefresh) {
+        existingMetaRefresh.setAttribute('content', '2; url=' + targetUrl);
+      }
+      
+      // カウントダウン
+      let count = 2;
+      const countdownElement = document.getElementById('countdown');
+      
+      const countdown = setInterval(() => {
+        count--;
+        if (countdownElement) countdownElement.textContent = count;
+        
+        if (count <= 0) {
+          clearInterval(countdown);
+          // 複数の方法でリダイレクトを試行
+          try {
+            window.location.href = targetUrl;
+          } catch (e) {
+            try {
+              window.location.replace(targetUrl);
+            } catch (e2) {
+              // フォールバック
+              alert('自動リダイレクトできませんでした。「今すぐ移動する」ボタンをタップしてください。');
+            }
+          }
+        }
+      }, 1000);
+    }
+
+    // DOMが完全に読み込まれてから実行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', performRedirect);
+    } else {
+      performRedirect();
+    }
   </script>
 </body>
 </html>

@@ -56,10 +56,25 @@
   </div>
   
   <script>
-    // モバイル対応の強化されたリダイレクト
-    function performRedirect() {
+    // UTM設定を読み込む関数
+    async function loadUtmConfig() {
+      try {
+        const response = await fetch('/Nagareboshi/utm-config.json');
+        const config = await response.json();
+        return config.utmMappings;
+      } catch (error) {
+        console.log('UTM設定ファイルを読み込めませんでした:', error);
+        return {};
+      }
+    }
+
+    // モバイル対応の強化されたUTM対応リダイレクト
+    async function performRedirect() {
       const currentPath = window.location.pathname;
       const fullUrl = window.location.href;
+      
+      // UTM設定を読み込み
+      const utmMappings = await loadUtmConfig();
       
       // GitHub Pagesのリポジトリ名を除去
       let cleanPath = currentPath;
@@ -77,12 +92,31 @@
         cleanPath = '';
       }
       
-      const targetUrl = 'https://stella6d.com' + cleanPath;
+      // パスからUTM短縮文字列を抽出
+      let basePath = cleanPath;
+      let utmParams = '';
+      
+      const pathParts = cleanPath.split('/');
+      if (pathParts.length > 1) {
+        const lastPart = pathParts[pathParts.length - 1];
+        
+        // 最後の部分がUTM短縮文字列かチェック
+        if (utmMappings[lastPart]) {
+          utmParams = '?' + utmMappings[lastPart];
+          // UTM部分を除去したパスを作成
+          basePath = pathParts.slice(0, -1).join('/');
+          if (basePath === '') basePath = '/';
+        }
+      }
+      
+      const targetUrl = 'https://stella6d.com' + basePath + utmParams;
       
       // デバッグ情報をコンソールに出力
       console.log('Current URL:', fullUrl);
       console.log('Current Path:', currentPath);
       console.log('Clean Path:', cleanPath);
+      console.log('Base Path:', basePath);
+      console.log('UTM Params:', utmParams);
       console.log('Target URL:', targetUrl);
       
       // HTML要素を更新

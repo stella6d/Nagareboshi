@@ -1,0 +1,6 @@
+{
+  "utmMappings": {
+    "qr-ps": "utm_source=qr&utm_medium=poster",
+    "qr-pam": "utm_source=qr&utm_medium=pamphlet"
+  }
+}
