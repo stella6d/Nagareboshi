@@ -48,6 +48,8 @@ https://stella6d.github.io/Nagareboshi/news/tw-s → https://stella6d.com/news?u
 https://stella6d.github.io/Nagareboshi/about/fb-s → https://stella6d.com/about?utm_source=facebook&utm_medium=social&utm_campaign=general
 https://stella6d.github.io/Nagareboshi/contact/mail-n → https://stella6d.com/contact?utm_source=email&utm_medium=newsletter&utm_campaign=general
 ```
+## utm設定
+[管理 スプレッドシート](https://docs.google.com/spreadsheets/d/1jEot8HaMMQ71sozgdA5OAA5cz7EhJKdISfPB6iU5n7E/edit?usp=sharing)
 
 ## リンク
 
@@ -66,3 +68,4 @@ https://stella6d.github.io/Nagareboshi/contact/mail-n → https://stella6d.com/c
 ---
 
 **商標について**: QR コードはデンソーウェーブの登録商標です。
+
