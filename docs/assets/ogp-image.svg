@@ -1,0 +1,54 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a237e;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3f51b5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e88e5;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Star pattern -->
+    <pattern id="stars" patternUnits="userSpaceOnUse" width="100" height="100">
+      <rect width="100" height="100" fill="transparent"/>
+      <circle cx="20" cy="30" r="1" fill="white" opacity="0.7"/>
+      <circle cx="80" cy="10" r="1.5" fill="white" opacity="0.5"/>
+      <circle cx="60" cy="70" r="1" fill="white" opacity="0.6"/>
+      <circle cx="30" cy="80" r="0.8" fill="white" opacity="0.8"/>
+      <circle cx="90" cy="50" r="1.2" fill="white" opacity="0.4"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect width="1200" height="630" fill="url(#stars)"/>
+  
+  <!-- Main content area -->
+  <rect x="100" y="100" width="1000" height="430" rx="20" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="600" y="220" font-family="Noto Sans CJK JP, Arial, sans-serif" font-size="64" font-weight="bold" text-anchor="middle" fill="white">
+    6D流れ星
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="280" font-family="Noto Sans CJK JP, Arial, sans-serif" font-size="32" text-anchor="middle" fill="rgba(255,255,255,0.9)">
+    小石川中等教育学校 創作展
+  </text>
+  
+  <!-- Description -->
+  <text x="600" y="340" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="rgba(255,255,255,0.8)">
+    GitHub Pages → stella6d.com
+  </text>
+  
+  <!-- Website URL -->
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#ffeb3b">
+    stella6d.com
+  </text>
+  
+  <!-- Decorative shooting star -->
+  <g transform="translate(900, 150)">
+    <path d="M0,0 L-40,-20 L-35,-15 L-60,-30 L-55,-25 L-45,-20 L0,0 Z" fill="white" opacity="0.9"/>
+    <circle cx="0" cy="0" r="8" fill="white"/>
+    <circle cx="0" cy="0" r="5" fill="#ffeb3b"/>
+  </g>
+</svg>
