@@ -51,7 +51,7 @@
     <!-- <div class="not-found">404 - ページが見つかりません</div> -->
     <h1>ページ移動中...</h1>
     <p>お探しのページはこちらのサイトで公開中です <span id="redirect-url"></span> をご確認ください。</p>
-    <p><span id="countdown" class="countdown">1.5</span>秒後に自動的にリダイレクトされます。</p>
+    <p>自動的にリダイレクトされます。</p>
     <a id="redirect-link" href="#" class="redirect-btn">今すぐ移動する</a>
   </div>
   
@@ -134,36 +134,22 @@
       linkCanonical.setAttribute('href', targetUrl);
       document.head.appendChild(linkCanonical);
       
-      // カウントダウン
-      let count = 1.5;
-      const countdownElement = document.getElementById('countdown');
-      
-      const countdown = setInterval(() => {
-        count -= 0.1;
-        if (countdownElement) {
-          countdownElement.textContent = Math.max(0, count).toFixed(1);
+      // 即座にリダイレクトを実行
+      try {
+        window.location.href = targetUrl;
+      } catch (e) {
+        try {
+          window.location.replace(targetUrl);
+        } catch (e2) {
+          // フォールバック: ユーザーに手動クリックを促す
+          alert('自動リダイレクトできませんでした。「今すぐ移動する」ボタンをタップしてください。');
         }
-        
-        if (count <= 0) {
-          clearInterval(countdown);
-          // 複数の方法でリダイレクトを試行
-          try {
-            window.location.href = targetUrl;
-          } catch (e) {
-            try {
-              window.location.replace(targetUrl);
-            } catch (e2) {
-              // フォールバック: ユーザーに手動クリックを促す
-              alert('自動リダイレクトできませんでした。「今すぐ移動する」ボタンをタップしてください。');
-            }
-          }
-        }
-      }, 100);
+      }
       
-      // メタリフレッシュも併用（フォールバック用に2秒に設定）
+      // メタリフレッシュも併用（フォールバック用に即座に設定）
       const metaRefresh = document.createElement('meta');
       metaRefresh.setAttribute('http-equiv', 'refresh');
-      metaRefresh.setAttribute('content', '2; url=' + targetUrl);
+      metaRefresh.setAttribute('content', '0; url=' + targetUrl);
       document.head.appendChild(metaRefresh);
     }
     
